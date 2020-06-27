@@ -1,0 +1,16 @@
+CUDNN_BENCHMARK: true
+_BASE_: "maskscoring_rcnn/configs/Base-RCNN-FPN.yaml"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: True
+  MASKIOU_ON: True
+  RESNETS:
+    DEPTH: 50
+SOLVER:
+  BASE_LR: 0.005
+  WEIGHT_DECAY: 0.0001
+  STEPS: (120000, 160000)
+  MAX_ITER: 180000
+DATASETS:
+  TRAIN: ("phone_train",)
+  TEST: ("phone_val",)
